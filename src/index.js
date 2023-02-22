@@ -12,13 +12,13 @@ const refs = {
 refs.searchBoxEl.addEventListener(
   "input",
   debounce((event) => {
-    if (event.target.value.trim() === "") {
-        clearCountryList();
-        return;
+    const enteredValue = event.target.value;
+    if (enteredValue.trim() === "") {
+      clearCountryList();
+      return;
     }
-      fetchCountries(event.target.value.trim(), refs.countryListEl);
-      
-  }, 300)
+    fetchCountries(enteredValue.trim(), refs.countryListEl);
+  }, DEBOUNCE_DELAY)
 );
 
 function clearCountryList() {
